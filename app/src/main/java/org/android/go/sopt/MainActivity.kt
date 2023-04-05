@@ -46,8 +46,6 @@ class MainActivity : AppCompatActivity() {
                 forte = result.data?.getStringExtra("forte").toString()
 
                 Snackbar.make(binding.root, "회원가입에 성공했습니다.", Snackbar.LENGTH_SHORT).show()
-                binding.edtId.setText(id)
-                binding.edtPw.setText(pw)
             }
         }
     }
