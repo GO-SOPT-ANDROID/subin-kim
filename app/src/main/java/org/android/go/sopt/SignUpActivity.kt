@@ -1,7 +1,9 @@
 package org.android.go.sopt
 
+import android.content.Context
 import android.content.Intent
 import android.os.Bundle
+import android.view.inputmethod.InputMethodManager
 import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
 import com.google.android.material.snackbar.Snackbar
@@ -13,6 +15,8 @@ class SignUpActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         binding = ActivitySignupBinding.inflate(layoutInflater)
         setContentView(binding.root)
+
+        hideKeyboard()
 
         clickSignUp()
     }
@@ -33,6 +37,16 @@ class SignUpActivity : AppCompatActivity() {
                 intent.putExtra("forte", binding.edtSignupForte.text.toString())
                 setResult(RESULT_OK, intent)
                 finish()
+            }
+        }
+    }
+
+    private fun hideKeyboard() {
+        binding.bgSignup.setOnClickListener{
+            val v = currentFocus
+            if (v != null) {
+                val imm = getSystemService(Context.INPUT_METHOD_SERVICE) as InputMethodManager
+                imm.hideSoftInputFromWindow(v.windowToken, 0)
             }
         }
     }

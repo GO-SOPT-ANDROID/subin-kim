@@ -1,8 +1,11 @@
 package org.android.go.sopt
 
+import android.content.Context
 import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
+import android.view.View
+import android.view.inputmethod.InputMethodManager
 import android.widget.Toast
 import androidx.activity.result.ActivityResultLauncher
 import androidx.activity.result.contract.ActivityResultContracts
@@ -12,15 +15,17 @@ import org.android.go.sopt.databinding.ActivityMainBinding
 class MainActivity : AppCompatActivity() {
     lateinit var binding: ActivityMainBinding
     private lateinit var resultLauncher: ActivityResultLauncher<Intent>
-    lateinit var id: String
-    lateinit var pw: String
-    lateinit var name: String
-    lateinit var forte: String
+    private lateinit var id: String
+    private lateinit var pw: String
+    private lateinit var name: String
+    private lateinit var forte: String
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         binding = ActivityMainBinding.inflate(layoutInflater)
         setContentView(binding.root)
+
+        hideKeyboard()
 
         setResultSignUp()
 
@@ -60,6 +65,16 @@ class MainActivity : AppCompatActivity() {
                 startActivity(intent)
             } else {
                 Toast.makeText(this, "로그인에 실패했습니다.", Toast.LENGTH_SHORT).show()
+            }
+        }
+    }
+
+    private fun hideKeyboard() {
+        binding.bgMain.setOnClickListener{
+            val v = currentFocus
+            if (v != null) {
+                val imm = getSystemService(Context.INPUT_METHOD_SERVICE) as InputMethodManager
+                imm.hideSoftInputFromWindow(v.windowToken, 0)
             }
         }
     }
