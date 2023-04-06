@@ -2,7 +2,7 @@
 
 ## 과제 링크 제출란
 
-https://2bing01.tistory.com/5
+액티비티 생명주기 : https://2bing01.tistory.com/5
 
 ## 템플릿 설명
 레포지터리에는 총 2개의 브랜치가 있습니다.
