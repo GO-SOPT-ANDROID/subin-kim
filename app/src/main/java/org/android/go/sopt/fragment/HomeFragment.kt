@@ -34,9 +34,7 @@ class HomeFragment : Fragment() {
         super.onViewCreated(view, savedInstanceState)
         //대부분 로직 여기 구현
         //null이 아닌 context 반환이 requireContext
-        /*binding.rvHome.adapter= MyAdapter(requireContext())
-        //fragment 에서는 this불가하므로 context
-        binding.rvHome.layoutManager = LinearLayoutManager(context)*/
+
         initRecyclerView()
 
 
@@ -47,7 +45,7 @@ class HomeFragment : Fragment() {
 
         datas.apply {
             add(MultiData(multi_type1, "안드로이드 과제", null, null, null))
-            for (i in 1..10) {
+            for (i in 1..20) {
                 add(MultiData(multi_type2, null, image = R.drawable.dog, "subin$i", "kim"))
             }
             multiAdapter.datas = datas

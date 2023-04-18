@@ -14,11 +14,9 @@ class MultiviewAdapter(private val context: Context) :
     RecyclerView.Adapter<RecyclerView.ViewHolder>() {
 
     var datas = mutableListOf<MultiData>()
-    //private val binding1 by lazy { ItemHomeTitleBinding.inflate(layoutInflater) }
-    //private val binding2 by lazy { ItemGithubRepoBinding.inflate(layoutInflater) }
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): RecyclerView.ViewHolder {
-        //val view : View?
+
         return when (viewType) {
             multi_type1 -> {
                 val binding =
@@ -28,9 +26,7 @@ class MultiviewAdapter(private val context: Context) :
             }
             else -> {
                 val binding = ItemGithubRepoBinding.inflate(
-                    LayoutInflater.from(parent.context),
-                    parent,
-                    false
+                    LayoutInflater.from(parent.context), parent, false
                 )
 
                 MultiViewHolder2(binding)
@@ -71,7 +67,6 @@ class MultiviewAdapter(private val context: Context) :
         fun bind(item: MultiData) {
             binding.tvItemGithubRepo.text = item.repo
             binding.tvItemGithubAuthor.text = item.name
-            //Glide.with(context).load(item.image).into(binding2.ivItemGithubRepo)
             Glide.with(itemView).load(item.image).into(binding.ivItemGithubRepo)
         }
     }
