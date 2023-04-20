@@ -24,30 +24,31 @@ class MainActivity : AppCompatActivity() {
                 .replace(R.id.fcv_main, HomeFragment()).commit()
         }
 
-        binding.bnvMain.setOnItemSelectedListener { item ->
 
-            if (binding.bnvMain.selectedItemId == item.itemId) {
-                binding.fcvMain.scrollTo(0, 0)
+        with(binding) {
+            bnvMain.setOnItemSelectedListener { item ->
+
+                if (bnvMain.selectedItemId == item.itemId) {
+                    fcvMain.scrollTo(0, 0)
+                }
+
+                when (item.itemId) {
+                    R.id.menu_home -> {
+                        changeFragment(HomeFragment())
+                        return@setOnItemSelectedListener true
+                    }
+                    R.id.menu_search -> {
+                        changeFragment(SearchFragment())
+                        return@setOnItemSelectedListener true
+                    }
+                    else -> {
+                        changeFragment(GalleryFragment())
+                        return@setOnItemSelectedListener true
+                    }
+                }
+
             }
-
-            when (item.itemId) {
-                R.id.menu_home -> {
-                    changeFragment(HomeFragment())
-                    return@setOnItemSelectedListener true
-                }
-                R.id.menu_search -> {
-                    changeFragment(SearchFragment())
-                    return@setOnItemSelectedListener true
-                }
-                else -> {
-                    changeFragment(GalleryFragment())
-                    return@setOnItemSelectedListener true
-                }
-            }
-
         }
-
-
     }
 
     private fun changeFragment(fragment: Fragment) {
