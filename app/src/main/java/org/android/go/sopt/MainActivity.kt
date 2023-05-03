@@ -60,7 +60,7 @@ class MainActivity : AppCompatActivity() {
         binding.btnLogin.setOnClickListener {
             if (binding.edtId.text.toString() == id && binding.edtPw.text.toString() == pw) {
                 Toast.makeText(this, "로그인에 성공했습니다.", Toast.LENGTH_SHORT).show()
-                val intent = Intent(this, MypageActivity::class.java)
+                val intent = Intent(this, Main2Activity::class.java)
                 intent.putExtra("name", name)
                 intent.putExtra("forte", forte)
                 startActivity(intent)
