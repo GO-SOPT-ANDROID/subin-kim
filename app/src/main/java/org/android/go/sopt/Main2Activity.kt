@@ -6,6 +6,7 @@ import androidx.fragment.app.Fragment
 import org.android.go.sopt.databinding.ActivityMain2Binding
 import org.android.go.sopt.fragment.GalleryFragment
 import org.android.go.sopt.fragment.HomeFragment
+import org.android.go.sopt.fragment.MypageFragment
 import org.android.go.sopt.fragment.SearchFragment
 
 class Main2Activity: AppCompatActivity(){
@@ -35,8 +36,12 @@ class Main2Activity: AppCompatActivity(){
                         changeFragment(SearchFragment())
                         return@setOnItemSelectedListener true
                     }
-                    else -> {
+                    R.id.menu_gallery -> {
                         changeFragment(GalleryFragment())
+                        return@setOnItemSelectedListener true
+                    }
+                    else -> {
+                        changeFragment(MypageFragment())
                         return@setOnItemSelectedListener true
                     }
                 }
