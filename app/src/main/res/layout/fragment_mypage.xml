@@ -4,11 +4,13 @@
     android:layout_height="match_parent"
     xmlns:app="http://schemas.android.com/apk/res-auto">
 
+
     <androidx.appcompat.widget.AppCompatButton
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:id="@+id/btn_mypage_logout"
         android:text="@string/logout"
+        android:layout_margin="20dp"
         android:padding="15dp"
         android:backgroundTint="@color/deep_purple_200"
         app:layout_constraintStart_toStartOf="parent"
