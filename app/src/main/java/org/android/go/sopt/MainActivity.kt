@@ -2,13 +2,13 @@ package org.android.go.sopt
 
 import android.os.Bundle
 import androidx.appcompat.app.AppCompatActivity
-import androidx.constraintlayout.widget.ConstraintLayout
 import androidx.fragment.app.Fragment
-import com.google.android.material.bottomnavigation.BottomNavigationView
 import org.android.go.sopt.databinding.ActivityMainBinding
 import org.android.go.sopt.fragment.GalleryFragment
 import org.android.go.sopt.fragment.HomeFragment
+import org.android.go.sopt.fragment.MypageFragment
 import org.android.go.sopt.fragment.SearchFragment
+
 
 class MainActivity : AppCompatActivity() {
     lateinit var binding: ActivityMainBinding
@@ -41,8 +41,12 @@ class MainActivity : AppCompatActivity() {
                         changeFragment(SearchFragment())
                         return@setOnItemSelectedListener true
                     }
-                    else -> {
+                    R.id.menu_gallery -> {
                         changeFragment(GalleryFragment())
+                        return@setOnItemSelectedListener true
+                    }
+                    else -> {
+                        changeFragment(MypageFragment())
                         return@setOnItemSelectedListener true
                     }
                 }

@@ -23,6 +23,7 @@
     <!--mypage-->
     <string name="name_mypage">이름 : </string>
     <string name="forte_mypage">특기 : </string>
+    <string name="logout">로그아웃</string>
 
     <!--home-->
     <string name="home_title">github repo</string>
