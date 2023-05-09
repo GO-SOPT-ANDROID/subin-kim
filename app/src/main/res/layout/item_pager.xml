@@ -4,15 +4,16 @@
     android:layout_height="match_parent"
     xmlns:app="http://schemas.android.com/apk/res-auto">
 
-    <androidx.viewpager2.widget.ViewPager2
-        android:id="@+id/pager_gallery"
-        android:layout_width="0dp"
+    <ImageView
+        android:layout_width="200dp"
         android:layout_height="0dp"
-        android:layout_marginHorizontal="50dp"
-        android:layout_marginVertical="30dp"
+        android:id="@+id/img_gallery"
         app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintDimensionRatio="1"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintTop_toTopOf="parent"/>
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        android:contentDescription="pager item image"/>
+
 
 </androidx.constraintlayout.widget.ConstraintLayout>
