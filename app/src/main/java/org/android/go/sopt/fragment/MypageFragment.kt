@@ -7,6 +7,7 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.Fragment
+import org.android.go.sopt.LoginActivity
 import org.android.go.sopt.MainActivity
 import org.android.go.sopt.databinding.FragmentMypageBinding
 
@@ -37,7 +38,7 @@ class MypageFragment : Fragment() {
         builder.setTitle("Logout")
         builder.setMessage("로그아웃 하시겠습니까?")
         builder.setPositiveButton("Yes") { dialog, which ->
-            val intent = Intent(requireContext(), MainActivity::class.java)
+            val intent = Intent(requireContext(), LoginActivity::class.java)
             startActivity(intent)
         }
         builder.setNegativeButton("No") { dialog, which ->

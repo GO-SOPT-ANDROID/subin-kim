@@ -24,7 +24,7 @@ class SignUpActivity : AppCompatActivity() {
 
         hideKeyboard()
 
-        //clickSignUp()
+        clickSignUp()
 
     }
 
@@ -67,7 +67,7 @@ class SignUpActivity : AppCompatActivity() {
     }
 
 
-    /*private fun clickSignUp() {
+    private fun clickSignUp() {
         binding.btnSignup.setOnClickListener {
             if (binding.edtSignupId.length() == 0 || binding.edtSignupPw.length() == 0 || binding.edtSignupForte.length() == 0 || binding.edtSignupName.length() == 0) {
                 Toast.makeText(this, "모두 입력해주세요.", Toast.LENGTH_SHORT).show()
@@ -85,7 +85,7 @@ class SignUpActivity : AppCompatActivity() {
                 finish()
             }
         }
-    }*/
+    }
 
     private fun hideKeyboard() {
         binding.bgSignup.setOnClickListener {
