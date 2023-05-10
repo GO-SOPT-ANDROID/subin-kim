@@ -3,13 +3,12 @@ package org.android.go.sopt
 import android.content.Context
 import android.content.Intent
 import android.os.Bundle
-import android.view.WindowManager
 import android.view.inputmethod.InputMethodManager
 import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
-import com.google.android.material.snackbar.Snackbar
 import org.android.go.sopt.data.local.RequestSignUpDto
 import org.android.go.sopt.data.local.ResponseSignUpDto
+import org.android.go.sopt.data.remote.ApiFactory
 import org.android.go.sopt.databinding.ActivitySignupBinding
 import retrofit2.Call
 import retrofit2.Response
@@ -34,6 +33,7 @@ class SignUpActivity : AppCompatActivity() {
                 && binding.edtSignupName.text.isNotBlank()
                 && binding.edtSignupForte.text.isNotBlank()
     }
+
     private fun completeSignUp() {
         signUpService.signUp(
             with(binding) {
@@ -50,18 +50,18 @@ class SignUpActivity : AppCompatActivity() {
                 response: Response<ResponseSignUpDto>,
             ) {
                 if (response.isSuccessful) {
-                    //response.body()?.message?.let { makeToastMessage(it) } ?: "회원가입에 성공했습니다."
+                    response.body()?.message?.let { makeToastMessage(it) } ?: "회원가입에 성공했습니다."
 
                     if (!isFinishing) finish()
                 } else {
-                    // 실패한 응답
-                    //response.body()?.message?.let { makeToastMessage(it) } ?: "서버통신 실패(40X)"
+
+                    response.body()?.message?.let { makeToastMessage(it) } ?: "서버통신 실패(40X)"
                 }
             }
 
             override fun onFailure(call: Call<ResponseSignUpDto>, t: Throwable) {
-                // 왜 안 오노
-                //t.message?.let { makeToastMessage(it) } ?: "서버통신 실패(응답값 X)"
+
+                t.message?.let { makeToastMessage(it) } ?: "서버통신 실패(응답값 X)"
             }
         })
     }
@@ -85,6 +85,10 @@ class SignUpActivity : AppCompatActivity() {
                 finish()
             }
         }
+    }
+
+    private fun makeToastMessage(message: String, context: Context = applicationContext) {
+        Toast.makeText(context, message, Toast.LENGTH_SHORT).show()
     }
 
     private fun hideKeyboard() {
