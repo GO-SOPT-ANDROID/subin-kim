@@ -14,7 +14,6 @@ import org.android.go.sopt.databinding.ActivityLoginBinding
 
 class LoginActivity : AppCompatActivity() {
     lateinit var binding: ActivityLoginBinding
-    private lateinit var resultLauncher: ActivityResultLauncher<Intent>
     private lateinit var id: String
     private lateinit var pw: String
     private lateinit var name: String
@@ -27,33 +26,17 @@ class LoginActivity : AppCompatActivity() {
 
         hideKeyboard()
 
-        setResultSignUp()
+        // setResultSignUp()
 
         clickLogin()
 
         binding.btnSignup.setOnClickListener {
             val intent = Intent(this, SignUpActivity::class.java)
-            // 데이터를 받아올 activity 실행 (startActivityForResult와 동일한 기능)
-            resultLauncher.launch(intent)
+            startActivity(intent)
         }
 
     }
 
-    private fun setResultSignUp() {
-        // Callback 등록
-        resultLauncher = registerForActivityResult(
-            ActivityResultContracts.StartActivityForResult()
-        ) { result ->
-            if (result.resultCode == RESULT_OK) {
-                id = result.data?.getStringExtra("id").toString()
-                pw = result.data?.getStringExtra("pw").toString()
-                name = result.data?.getStringExtra("name").toString()
-                forte = result.data?.getStringExtra("forte").toString()
-
-                Snackbar.make(binding.root, "회원가입에 성공했습니다.", Snackbar.LENGTH_SHORT).show()
-            }
-        }
-    }
 
     private fun clickLogin() {
         binding.btnLogin.setOnClickListener {
@@ -70,7 +53,7 @@ class LoginActivity : AppCompatActivity() {
     }
 
     private fun hideKeyboard() {
-        binding.bgLogin.setOnClickListener{
+        binding.bgLogin.setOnClickListener {
             val v = currentFocus
             if (v != null) {
                 val imm = getSystemService(Context.INPUT_METHOD_SERVICE) as InputMethodManager
