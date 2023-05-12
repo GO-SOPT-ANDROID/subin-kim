@@ -72,14 +72,11 @@ class MultiviewAdapter(private val context: Context) :
     class MultiViewHolder2(private val binding: ItemGithubRepoBinding) :
         RecyclerView.ViewHolder(binding.root) {
         fun bind(item: MultiData) {
-            /*binding.tvItemGithubRepo.text = item.dataInfo.email
-            binding.tvItemGithubAuthor.text = item.first_name + " " + item.last_name
-            Glide.with(itemView).load(item.avatar).into(binding.ivItemGithubRepo)*/
-            val dataInfo = item.dataInfo ?: return // dataInfo가 null인 경우 return
-
-            binding.tvItemGithubRepo.text = dataInfo.firstOrNull()?.email ?: ""
-            binding.tvItemGithubAuthor.text = dataInfo.joinToString(separator = "\n") { "${it.first_name} ${it.last_name}" }
-            Glide.with(itemView).load(dataInfo.firstOrNull()?.avatar ?: "").into(binding.ivItemGithubRepo)
+            binding.tvItemGithubRepo.text = item.title
+            binding.tvItemGithubAuthor.text = item.dataInfo
+            Glide.with(binding.root)
+                .load(item.dataInfo)
+                .into(binding.ivItemGithubRepo)
         }
     }
 }

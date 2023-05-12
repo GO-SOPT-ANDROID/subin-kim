@@ -71,12 +71,16 @@ class HomeFragment : Fragment() {
             ) {
                 if (response.isSuccessful) {
                     val users = response.body()?.data
-                    for(i in 0 until users!!.size){
+                    for(user in users ?: emptyList()){
                         if (users != null) {
-                            dataList.addAll(users)
-                            datas.add(MultiData(MULTI_TYPE2, null, users))
-                            multiAdapter.notifyDataSetChanged()
+                            val userInfo = MultiData(
+                                MULTI_TYPE2,
+                                "${user.first_name} ${user.last_name}",
+                                user.avatar
+                            )
+                            datas.add(userInfo)
                         }
+                        multiAdapter.notifyDataSetChanged()
                     }
 
                 } else {
