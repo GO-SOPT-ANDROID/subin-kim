@@ -49,8 +49,6 @@ class LoginActivity : AppCompatActivity() {
     private fun clickLogin() {
         with(binding) {
             btnLogin.setOnClickListener {
-                val id = tvId.text.toString()
-                val password = tvPw.text.toString()
                 networkLogin()
             }
         }
@@ -61,7 +59,7 @@ class LoginActivity : AppCompatActivity() {
             id = binding.edtId.text.toString(),
             password = binding.edtPw.text.toString()
         )
-        val call: Call<ResponseSigninDto> = ServicePool.signInService.signin(requestLogin)
+        val call: Call<ResponseSigninDto> = loginService.signin(requestLogin)
         call.enqueue(object : Callback<ResponseSigninDto> {
             override fun onResponse(call: Call<ResponseSigninDto>, response: Response<ResponseSigninDto>) {
                 if (response.isSuccessful) {

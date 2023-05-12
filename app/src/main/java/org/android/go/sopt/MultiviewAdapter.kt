@@ -1,24 +1,26 @@
 package org.android.go.sopt
 
+import org.android.go.sopt.data.*
+
 import android.content.Context
 import android.view.LayoutInflater
 import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
 import com.bumptech.glide.Glide
 import org.android.go.sopt.data.MultiData
-import org.android.go.sopt.data.multi_type1
 import org.android.go.sopt.databinding.ItemGithubRepoBinding
 import org.android.go.sopt.databinding.ItemHomeTitleBinding
 
 class MultiviewAdapter(private val context: Context) :
     RecyclerView.Adapter<RecyclerView.ViewHolder>() {
 
+
     var datas = mutableListOf<MultiData>()
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): RecyclerView.ViewHolder {
 
         return when (viewType) {
-            multi_type1 -> {
+            MULTI_TYPE1 -> {
                 val binding =
                     ItemHomeTitleBinding.inflate(LayoutInflater.from(parent.context), parent, false)
 
@@ -36,7 +38,7 @@ class MultiviewAdapter(private val context: Context) :
 
     override fun onBindViewHolder(holder: RecyclerView.ViewHolder, position: Int) {
         when (datas[position].type) {
-            multi_type1 -> {
+            MULTI_TYPE1 -> {
                 (holder as MultiViewHolder1).bind(datas[position])
                 holder.setIsRecyclable(false)
             }
@@ -55,19 +57,29 @@ class MultiviewAdapter(private val context: Context) :
         return datas[position].type
     }
 
-    inner class MultiViewHolder1(private val binding: ItemHomeTitleBinding) :
+    fun setData(data: MutableList<MultiData>) {
+        this.datas = data
+        notifyDataSetChanged()
+    }
+
+    class MultiViewHolder1(private val binding: ItemHomeTitleBinding) :
         RecyclerView.ViewHolder(binding.root) {
         fun bind(item: MultiData) {
             binding.tvHomeTitle.text = item.title
         }
     }
 
-    inner class MultiViewHolder2(private val binding: ItemGithubRepoBinding) :
+    class MultiViewHolder2(private val binding: ItemGithubRepoBinding) :
         RecyclerView.ViewHolder(binding.root) {
         fun bind(item: MultiData) {
-            binding.tvItemGithubRepo.text = item.repo
-            binding.tvItemGithubAuthor.text = item.name
-            Glide.with(itemView).load(item.image).into(binding.ivItemGithubRepo)
+            /*binding.tvItemGithubRepo.text = item.dataInfo.email
+            binding.tvItemGithubAuthor.text = item.first_name + " " + item.last_name
+            Glide.with(itemView).load(item.avatar).into(binding.ivItemGithubRepo)*/
+            val dataInfo = item.dataInfo ?: return // dataInfo가 null인 경우 return
+
+            binding.tvItemGithubRepo.text = dataInfo.firstOrNull()?.email ?: ""
+            binding.tvItemGithubAuthor.text = dataInfo.joinToString(separator = "\n") { "${it.first_name} ${it.last_name}" }
+            Glide.with(itemView).load(dataInfo.firstOrNull()?.avatar ?: "").into(binding.ivItemGithubRepo)
         }
     }
 }
