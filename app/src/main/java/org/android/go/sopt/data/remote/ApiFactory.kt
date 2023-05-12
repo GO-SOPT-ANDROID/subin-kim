@@ -1,11 +1,13 @@
 package org.android.go.sopt.data.remote
 
+import android.os.Build
 import com.jakewharton.retrofit2.converter.kotlinx.serialization.asConverterFactory
 import kotlinx.serialization.json.Json
 import okhttp3.Interceptor
 import okhttp3.MediaType.Companion.toMediaType
 import okhttp3.OkHttpClient
 import okhttp3.Response
+import org.android.go.sopt.BuildConfig
 import org.android.go.sopt.data.remote.service.ReqresService
 import org.android.go.sopt.data.remote.service.SignInService
 import org.android.go.sopt.data.remote.service.SignUpService
@@ -13,7 +15,7 @@ import retrofit2.Retrofit
 import java.io.IOException
 
 object ApiFactory {
-    private const val BASE_URL = "http://52.78.152.187:8080/"
+    private const val BASE_URL = BuildConfig.AUTH_BASE_URL
 
     val retrofit: Retrofit by lazy {
         Retrofit.Builder()
@@ -25,7 +27,7 @@ object ApiFactory {
 }
 
 object ReqresApi {
-    private const val BASE_URL = "https://reqres.in/api/"
+    private const val BASE_URL = BuildConfig.REQRES_BASE_URL
 
     val retrofit : Retrofit by lazy {
         Retrofit.Builder()
