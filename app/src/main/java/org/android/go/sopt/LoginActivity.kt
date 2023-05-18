@@ -4,21 +4,26 @@ import android.content.Context
 import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
+import android.util.Log
 import android.view.inputmethod.InputMethodManager
 import android.widget.Toast
 import androidx.activity.result.ActivityResultLauncher
 import androidx.activity.result.contract.ActivityResultContracts
 import com.google.android.material.snackbar.Snackbar
+import org.android.go.sopt.data.remote.ApiFactory
+import org.android.go.sopt.data.remote.ServicePool
+import org.android.go.sopt.data.remote.ServicePool.signUpService
+import org.android.go.sopt.data.remote.model.RequestSigninDto
+import org.android.go.sopt.data.remote.model.ResponseSigninDto
 import org.android.go.sopt.databinding.ActivityLoginBinding
+import retrofit2.Call
+import retrofit2.Callback
+import retrofit2.Response
 
 
 class LoginActivity : AppCompatActivity() {
     lateinit var binding: ActivityLoginBinding
-    private lateinit var resultLauncher: ActivityResultLauncher<Intent>
-    private lateinit var id: String
-    private lateinit var pw: String
-    private lateinit var name: String
-    private lateinit var forte: String
+    private val loginService = ServicePool.signInService
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -27,50 +32,58 @@ class LoginActivity : AppCompatActivity() {
 
         hideKeyboard()
 
-        setResultSignUp()
-
         clickLogin()
 
+        clickSignup()
+
+    }
+
+    private fun clickSignup() {
         binding.btnSignup.setOnClickListener {
             val intent = Intent(this, SignUpActivity::class.java)
-            // 데이터를 받아올 activity 실행 (startActivityForResult와 동일한 기능)
-            resultLauncher.launch(intent)
-        }
-
-    }
-
-    private fun setResultSignUp() {
-        // Callback 등록
-        resultLauncher = registerForActivityResult(
-            ActivityResultContracts.StartActivityForResult()
-        ) { result ->
-            if (result.resultCode == RESULT_OK) {
-                id = result.data?.getStringExtra("id").toString()
-                pw = result.data?.getStringExtra("pw").toString()
-                name = result.data?.getStringExtra("name").toString()
-                forte = result.data?.getStringExtra("forte").toString()
-
-                Snackbar.make(binding.root, "회원가입에 성공했습니다.", Snackbar.LENGTH_SHORT).show()
-            }
+            startActivity(intent)
         }
     }
+
 
     private fun clickLogin() {
-        binding.btnLogin.setOnClickListener {
-            if (binding.edtId.text.toString() == id && binding.edtPw.text.toString() == pw) {
-                Toast.makeText(this, "로그인에 성공했습니다.", Toast.LENGTH_SHORT).show()
-                val intent = Intent(this, MainActivity::class.java)
-                intent.putExtra("name", name)
-                intent.putExtra("forte", forte)
-                startActivity(intent)
-            } else {
-                Toast.makeText(this, "로그인에 실패했습니다.", Toast.LENGTH_SHORT).show()
+        with(binding) {
+            btnLogin.setOnClickListener {
+                networkLogin()
             }
         }
+    }
+
+    private fun networkLogin() {
+        val requestLogin = RequestSigninDto(
+            id = binding.edtId.text.toString(),
+            password = binding.edtPw.text.toString()
+        )
+        val call: Call<ResponseSigninDto> = loginService.signin(requestLogin)
+        call.enqueue(object : Callback<ResponseSigninDto> {
+            override fun onResponse(call: Call<ResponseSigninDto>, response: Response<ResponseSigninDto>) {
+                if (response.isSuccessful) {
+                    val data = response.body()?.data
+                    Toast.makeText(this@LoginActivity, "로그인에 성공했습니다.", Toast.LENGTH_SHORT).show()
+                    val intent = Intent(this@LoginActivity, MainActivity::class.java)
+                    intent.putExtra("id", data?.id)
+                    intent.putExtra("name", data?.name)
+                    intent.putExtra("skill", data?.skill)
+                    startActivity(intent)
+                    finish()
+                } else {
+                    Log.d("loginerror", "onResponse: ")
+                }
+            }
+
+            override fun onFailure(call: Call<ResponseSigninDto>, t: Throwable) {
+                Log.e("NetWorkTest", "error: $t")
+            }
+        })
     }
 
     private fun hideKeyboard() {
-        binding.bgLogin.setOnClickListener{
+        binding.bgLogin.setOnClickListener {
             val v = currentFocus
             if (v != null) {
                 val imm = getSystemService(Context.INPUT_METHOD_SERVICE) as InputMethodManager

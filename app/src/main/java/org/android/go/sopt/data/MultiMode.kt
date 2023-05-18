@@ -1,4 +1,4 @@
 package org.android.go.sopt.data
 
-const val multi_type1 = 0
-const val multi_type2 = 1
+const val MULTI_TYPE1 = 0
+const val MULTI_TYPE2 = 1
