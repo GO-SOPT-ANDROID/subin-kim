@@ -2,6 +2,9 @@ package org.android.go.sopt.viewmodel
 
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
+import org.android.go.sopt.data.remote.ServicePool.signInService
+import org.android.go.sopt.data.remote.model.RequestSignInDto
+import org.android.go.sopt.data.remote.model.ResponseSignInDto
 import retrofit2.Call
 import retrofit2.Callback
 import retrofit2.Response

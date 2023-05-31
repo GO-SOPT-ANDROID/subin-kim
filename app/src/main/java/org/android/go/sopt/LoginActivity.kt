@@ -2,19 +2,14 @@ package org.android.go.sopt
 
 import android.content.Context
 import android.content.Intent
-import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.util.Log
 import android.view.inputmethod.InputMethodManager
 import android.widget.Toast
-import androidx.activity.result.ActivityResultLauncher
-import androidx.activity.result.contract.ActivityResultContracts
-import com.google.android.material.snackbar.Snackbar
-import org.android.go.sopt.data.remote.ApiFactory
+import androidx.appcompat.app.AppCompatActivity
 import org.android.go.sopt.data.remote.ServicePool
-import org.android.go.sopt.data.remote.ServicePool.signUpService
-import org.android.go.sopt.data.remote.model.RequestSigninDto
-import org.android.go.sopt.data.remote.model.ResponseSigninDto
+import org.android.go.sopt.data.remote.model.RequestSignInDto
+import org.android.go.sopt.data.remote.model.ResponseSignInDto
 import org.android.go.sopt.databinding.ActivityLoginBinding
 import retrofit2.Call
 import retrofit2.Callback
@@ -55,13 +50,13 @@ class LoginActivity : AppCompatActivity() {
     }
 
     private fun networkLogin() {
-        val requestLogin = RequestSigninDto(
+        val requestLogin = RequestSignInDto(
             id = binding.edtId.text.toString(),
             password = binding.edtPw.text.toString()
         )
-        val call: Call<ResponseSigninDto> = loginService.signin(requestLogin)
-        call.enqueue(object : Callback<ResponseSigninDto> {
-            override fun onResponse(call: Call<ResponseSigninDto>, response: Response<ResponseSigninDto>) {
+        val call: Call<ResponseSignInDto> = loginService.signIn(requestLogin)
+        call.enqueue(object : Callback<ResponseSignInDto> {
+            override fun onResponse(call: Call<ResponseSignInDto>, response: Response<ResponseSignInDto>) {
                 if (response.isSuccessful) {
                     val data = response.body()?.data
                     Toast.makeText(this@LoginActivity, "로그인에 성공했습니다.", Toast.LENGTH_SHORT).show()
@@ -76,7 +71,7 @@ class LoginActivity : AppCompatActivity() {
                 }
             }
 
-            override fun onFailure(call: Call<ResponseSigninDto>, t: Throwable) {
+            override fun onFailure(call: Call<ResponseSignInDto>, t: Throwable) {
                 Log.e("NetWorkTest", "error: $t")
             }
         })
