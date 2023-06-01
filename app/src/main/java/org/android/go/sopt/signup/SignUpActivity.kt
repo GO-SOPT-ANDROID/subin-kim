@@ -1,20 +1,19 @@
-package org.android.go.sopt
+package org.android.go.sopt.signup
 
 import android.content.Context
 import android.os.Bundle
 import android.view.inputmethod.InputMethodManager
 import android.widget.Toast
+import androidx.activity.viewModels
 import androidx.appcompat.app.AppCompatActivity
-import org.android.go.sopt.data.local.RequestSignUpDto
-import org.android.go.sopt.data.local.ResponseSignUpDto
 import org.android.go.sopt.data.remote.ServicePool
 import org.android.go.sopt.databinding.ActivitySignupBinding
-import retrofit2.Call
-import retrofit2.Response
 
 class SignUpActivity : AppCompatActivity() {
     private val signUpService = ServicePool.signUpService
     lateinit var binding: ActivitySignupBinding
+
+    private val viewModel by viewModels<SignUpViewModel>()
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -26,6 +25,14 @@ class SignUpActivity : AppCompatActivity() {
         binding.btnSignup.setOnClickListener {
             completeSignUp()
         }
+
+        viewModel.signUpResult.observe(this) { signUpResult ->
+            if (!isFinishing) finish()
+            Toast.makeText(this, "회원가입 성공", Toast.LENGTH_SHORT).show()
+        }
+        viewModel.errorResult.observe(this) { errorResult ->
+            Toast.makeText(this, "회원가입 실패", Toast.LENGTH_SHORT).show()
+        }
     }
 
     private fun completeSignUp() {
@@ -36,7 +43,15 @@ class SignUpActivity : AppCompatActivity() {
         } else if (binding.edtSignupPw.length() < 8 || binding.edtSignupPw.length() > 12) {
             Toast.makeText(this, "비밀번호는 8~12자리로 입력해주세요.", Toast.LENGTH_SHORT).show()
         } else {
-            signUpService.signUp(
+            with(binding) {
+                viewModel.signup(
+                    edtSignupId.text.toString(),
+                    edtSignupPw.text.toString(),
+                    edtSignupName.text.toString(),
+                    edtSignupForte.text.toString()
+                )
+            }
+            /*signUpService.signUp(
                 with(binding) {
                     RequestSignUpDto(
                         edtSignupId.text.toString(),
@@ -64,14 +79,11 @@ class SignUpActivity : AppCompatActivity() {
 
                     t.message?.let { makeToastMessage(it) } ?: "서버통신 실패(응답값 X)"
                 }
-            })
+            })*/
         }
 
     }
 
-    private fun makeToastMessage(message: String, context: Context = applicationContext) {
-        Toast.makeText(context, message, Toast.LENGTH_SHORT).show()
-    }
 
     private fun hideKeyboard() {
         binding.bgSignup.setOnClickListener {

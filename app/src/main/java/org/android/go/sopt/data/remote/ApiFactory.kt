@@ -36,7 +36,6 @@ object ReqresApi {
 
 
 
-
     val retrofitForImage : Retrofit by lazy {
         Retrofit.Builder().baseUrl(BASE_URL)
             .addConverterFactory(Json.asConverterFactory("application/json".toMediaType())).build()
