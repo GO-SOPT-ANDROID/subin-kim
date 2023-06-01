@@ -22,7 +22,6 @@ class SignInViewModel : ViewModel() {
                 call: Call<ResponseSignInDto>,
                 response: Response<ResponseSignInDto>
             ) {
-                //_signInResult.postValue(response.body())
                 if (response.isSuccessful) {
                     _signInResult.value = response.body()
                 } else {
