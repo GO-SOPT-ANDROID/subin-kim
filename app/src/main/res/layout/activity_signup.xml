@@ -40,21 +40,25 @@
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/tv_signup_title" />
 
-        <EditText
-            android:id="@+id/edt_signup_id"
+        <com.google.android.material.textfield.TextInputLayout
+            android:id="@+id/edt_signup_id_layout"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:layout_marginHorizontal="30dp"
-            android:hint="@string/id_desc"
-            android:imeOptions="actionNext"
-            android:inputType="text"
-            android:maxLength="10"
-            android:maxLines="1"
-            android:text="@={viewModel.id}"
-            android:textColor="@color/grey_800"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/tv_signup_id" />
+            app:layout_constraintTop_toBottomOf="@+id/tv_signup_id">
+
+            <com.google.android.material.textfield.TextInputEditText
+                android:id="@+id/edt_signup_id"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:hint="@string/id_desc"
+                android:imeOptions="actionNext"
+                android:text="@={viewModel.id}"
+                android:textColor="@color/grey_800" />
+        </com.google.android.material.textfield.TextInputLayout>
+
 
         <TextView
             android:id="@+id/tv_signup_pw"
@@ -66,23 +70,28 @@
             android:textSize="20dp"
             android:textStyle="bold"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/edt_signup_id" />
+            app:layout_constraintTop_toBottomOf="@+id/edt_signup_id_layout" />
 
-        <EditText
-            android:id="@+id/edt_signup_pw"
+        <com.google.android.material.textfield.TextInputLayout
+            android:id="@+id/edt_signup_pw_layout"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:layout_marginHorizontal="30dp"
-            android:hint="@string/pw_desc"
-            android:imeOptions="actionNext"
-            android:inputType="text"
-            android:maxLength="12"
-            android:maxLines="1"
-            android:text="@={viewModel.pw}"
-            android:textColor="@color/grey_800"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/tv_signup_pw" />
+            app:layout_constraintTop_toBottomOf="@+id/tv_signup_pw">
+
+            <com.google.android.material.textfield.TextInputEditText
+                android:id="@+id/edt_signup_pw"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:hint="@string/pw_desc"
+                android:imeOptions="actionNext"
+                android:text="@={viewModel.pw}"
+                android:textColor="@color/grey_800" />
+
+        </com.google.android.material.textfield.TextInputLayout>
+
 
         <TextView
             android:id="@+id/tv_signup_name"
@@ -94,22 +103,27 @@
             android:textSize="20dp"
             android:textStyle="bold"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/edt_signup_pw" />
+            app:layout_constraintTop_toBottomOf="@+id/edt_signup_pw_layout" />
 
-        <EditText
-            android:id="@+id/edt_signup_name"
+        <com.google.android.material.textfield.TextInputLayout
+            android:id="@+id/edt_signup_name_layout"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:layout_marginHorizontal="30dp"
-            android:hint="@string/name_desc"
-            android:imeOptions="actionNext"
-            android:inputType="text"
-            android:maxLines="1"
-            android:text="@={viewModel.name}"
-            android:textColor="@color/grey_800"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/tv_signup_name" />
+            app:layout_constraintTop_toBottomOf="@+id/tv_signup_name">
+
+            <com.google.android.material.textfield.TextInputEditText
+                android:id="@+id/edt_signup_name"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:hint="@string/pw_desc"
+                android:imeOptions="actionNext"
+                android:text="@={viewModel.name}"
+                android:textColor="@color/grey_800" />
+
+        </com.google.android.material.textfield.TextInputLayout>
 
         <TextView
             android:id="@+id/tv_signup_forte"
@@ -121,22 +135,29 @@
             android:textSize="20dp"
             android:textStyle="bold"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/edt_signup_name" />
+            app:layout_constraintTop_toBottomOf="@+id/edt_signup_name_layout" />
 
-        <EditText
-            android:id="@+id/edt_signup_forte"
+        <com.google.android.material.textfield.TextInputLayout
+            android:id="@+id/edt_signup_forte_layout"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:layout_marginHorizontal="30dp"
-            android:hint="@string/forte_desc"
-            android:imeOptions="actionDone"
-            android:inputType="text"
-            android:maxLines="1"
-            android:text="@={viewModel.forte}"
-            android:textColor="@color/grey_800"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/tv_signup_forte" />
+            app:layout_constraintTop_toBottomOf="@+id/tv_signup_forte">
+
+            <com.google.android.material.textfield.TextInputEditText
+                android:id="@+id/edt_signup_forte"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:hint="@string/pw_desc"
+                android:imeOptions="actionNext"
+                android:text="@={viewModel.forte}"
+                android:textColor="@color/grey_800" />
+
+        </com.google.android.material.textfield.TextInputLayout>
+
+
 
         <androidx.appcompat.widget.AppCompatButton
             android:id="@+id/btn_signup"
@@ -149,7 +170,7 @@
             android:text="@string/signup_finish"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/edt_signup_forte" />
+            app:layout_constraintTop_toBottomOf="@+id/edt_signup_forte_layout" />
 
 
     </androidx.constraintlayout.widget.ConstraintLayout>

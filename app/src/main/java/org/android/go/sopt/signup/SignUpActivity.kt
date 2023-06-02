@@ -94,7 +94,6 @@ class SignUpActivity : AppCompatActivity() {
                 val isPasswordValid = viewModel!!.checkPw(password)
 
                 btnSignup.isEnabled = isIdValid && isPasswordValid
-                btnSignup.setBackgroundColor(if (isIdValid && isPasswordValid) Color.BLUE else Color.GRAY)
 
                 if (!isIdValid) {
                     edtSignupId.error = "아이디는 영문, 숫자가 포함해서 6~10글자 이내로 입력해주세요."
