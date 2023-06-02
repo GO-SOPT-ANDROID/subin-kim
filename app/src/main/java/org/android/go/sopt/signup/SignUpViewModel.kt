@@ -11,6 +11,12 @@ import retrofit2.Callback
 import retrofit2.Response
 
 class SignUpViewModel : ViewModel() {
+
+    val id = MutableLiveData<String>()
+    val pw = MutableLiveData<String>()
+    val name = MutableLiveData<String>()
+    val forte = MutableLiveData<String>()
+
     private val _signUpResult: MutableLiveData<ResponseSignUpDto> = MutableLiveData()
     val signUpResult: LiveData<ResponseSignUpDto> = _signUpResult
 
@@ -36,5 +42,13 @@ class SignUpViewModel : ViewModel() {
             }
 
         })
+    }
+
+    fun checkId(id: String): Boolean {
+        return !(id.isNullOrEmpty()) && id.matches(Regex("[a-zA-Z0-9]{6,10}"))
+    }
+
+    fun checkPw(pw: String): Boolean {
+        return !(pw.isNullOrEmpty()) && pw.matches(Regex("[a-zA-Z0-9!@#\\\$%^&*()]{6,12}"))
     }
 }

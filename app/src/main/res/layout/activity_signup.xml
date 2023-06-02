@@ -1,142 +1,158 @@
 <?xml version="1.0" encoding="utf-8"?>
-<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    android:layout_width="match_parent"
-    android:layout_height="match_parent"
-    android:id="@+id/bg_signup"
-    xmlns:app="http://schemas.android.com/apk/res-auto">
-    <TextView
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:id="@+id/tv_signup_title"
-        android:text="@string/signup"
-        android:textSize="25dp"
-        android:textStyle="bold"
-        android:layout_marginVertical="50dp"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"/>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools">
 
-    <TextView
-        android:id="@+id/tv_signup_id"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="@string/id"
-        android:textSize="20dp"
-        android:textStyle="bold"
-        android:layout_marginTop="50dp"
-        android:layout_marginHorizontal="30dp"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/tv_signup_title"/>
+    <data>
 
-    <EditText
-        android:layout_width="0dp"
-        android:layout_height="wrap_content"
-        android:id="@+id/edt_signup_id"
-        android:hint="@string/id_desc"
-        android:inputType="text"
-        android:maxLines="1"
-        android:maxLength="10"
-        android:imeOptions="actionNext"
-        android:textColor="@color/grey_800"
-        android:layout_marginHorizontal="30dp"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/tv_signup_id"/>
+        <variable
+            name="viewModel"
+            type="org.android.go.sopt.signup.SignUpViewModel" />
+    </data>
 
-    <TextView
-        android:id="@+id/tv_signup_pw"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="@string/pw"
-        android:textSize="20dp"
-        android:textStyle="bold"
-        android:layout_marginTop="50dp"
-        android:layout_marginHorizontal="30dp"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/edt_signup_id"/>
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:id="@+id/bg_signup"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        tools:context=".signup.SignUpActivity">
 
-    <EditText
-        android:layout_width="0dp"
-        android:layout_height="wrap_content"
-        android:id="@+id/edt_signup_pw"
-        android:hint="@string/pw_desc"
-        android:inputType="text"
-        android:maxLines="1"
-        android:maxLength="12"
-        android:imeOptions="actionNext"
-        android:textColor="@color/grey_800"
-        android:layout_marginHorizontal="30dp"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/tv_signup_pw"/>
+        <TextView
+            android:id="@+id/tv_signup_title"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginVertical="50dp"
+            android:text="@string/signup"
+            android:textSize="25dp"
+            android:textStyle="bold"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
 
-    <TextView
-        android:id="@+id/tv_signup_name"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="@string/name"
-        android:textSize="20dp"
-        android:textStyle="bold"
-        android:layout_marginTop="50dp"
-        android:layout_marginHorizontal="30dp"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/edt_signup_pw"/>
+        <TextView
+            android:id="@+id/tv_signup_id"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginHorizontal="30dp"
+            android:layout_marginTop="50dp"
+            android:text="@string/id"
+            android:textSize="20dp"
+            android:textStyle="bold"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/tv_signup_title" />
 
-    <EditText
-        android:layout_width="0dp"
-        android:layout_height="wrap_content"
-        android:id="@+id/edt_signup_name"
-        android:maxLines="1"
-        android:hint="@string/name_desc"
-        android:inputType="text"
-        android:imeOptions="actionNext"
-        android:textColor="@color/grey_800"
-        android:layout_marginHorizontal="30dp"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/tv_signup_name"/>
+        <EditText
+            android:id="@+id/edt_signup_id"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginHorizontal="30dp"
+            android:hint="@string/id_desc"
+            android:imeOptions="actionNext"
+            android:inputType="text"
+            android:maxLength="10"
+            android:maxLines="1"
+            android:text="@={viewModel.id}"
+            android:textColor="@color/grey_800"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/tv_signup_id" />
 
-    <TextView
-        android:id="@+id/tv_signup_forte"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="@string/forte"
-        android:textSize="20dp"
-        android:textStyle="bold"
-        android:layout_marginTop="50dp"
-        android:layout_marginHorizontal="30dp"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/edt_signup_name"/>
+        <TextView
+            android:id="@+id/tv_signup_pw"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginHorizontal="30dp"
+            android:layout_marginTop="50dp"
+            android:text="@string/pw"
+            android:textSize="20dp"
+            android:textStyle="bold"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/edt_signup_id" />
 
-    <EditText
-        android:layout_width="0dp"
-        android:layout_height="wrap_content"
-        android:id="@+id/edt_signup_forte"
-        android:hint="@string/forte_desc"
-        android:maxLines="1"
-        android:inputType="text"
-        android:imeOptions="actionDone"
-        android:textColor="@color/grey_800"
-        android:layout_marginHorizontal="30dp"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/tv_signup_forte"/>
+        <EditText
+            android:id="@+id/edt_signup_pw"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginHorizontal="30dp"
+            android:hint="@string/pw_desc"
+            android:imeOptions="actionNext"
+            android:inputType="text"
+            android:maxLength="12"
+            android:maxLines="1"
+            android:text="@={viewModel.pw}"
+            android:textColor="@color/grey_800"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/tv_signup_pw" />
 
-    <androidx.appcompat.widget.AppCompatButton
-        android:layout_width="0dp"
-        android:layout_height="wrap_content"
-        android:id="@+id/btn_signup"
-        android:text="@string/signup_finish"
-        android:inputType="text"
-        android:layout_marginHorizontal="30dp"
-        android:layout_marginTop="50dp"
-        android:backgroundTint="@color/purple"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/edt_signup_forte"/>
+        <TextView
+            android:id="@+id/tv_signup_name"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginHorizontal="30dp"
+            android:layout_marginTop="50dp"
+            android:text="@string/name"
+            android:textSize="20dp"
+            android:textStyle="bold"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/edt_signup_pw" />
+
+        <EditText
+            android:id="@+id/edt_signup_name"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginHorizontal="30dp"
+            android:hint="@string/name_desc"
+            android:imeOptions="actionNext"
+            android:inputType="text"
+            android:maxLines="1"
+            android:text="@={viewModel.name}"
+            android:textColor="@color/grey_800"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/tv_signup_name" />
+
+        <TextView
+            android:id="@+id/tv_signup_forte"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginHorizontal="30dp"
+            android:layout_marginTop="50dp"
+            android:text="@string/forte"
+            android:textSize="20dp"
+            android:textStyle="bold"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/edt_signup_name" />
+
+        <EditText
+            android:id="@+id/edt_signup_forte"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginHorizontal="30dp"
+            android:hint="@string/forte_desc"
+            android:imeOptions="actionDone"
+            android:inputType="text"
+            android:maxLines="1"
+            android:text="@={viewModel.forte}"
+            android:textColor="@color/grey_800"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/tv_signup_forte" />
+
+        <androidx.appcompat.widget.AppCompatButton
+            android:id="@+id/btn_signup"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginHorizontal="30dp"
+            android:layout_marginTop="50dp"
+            android:backgroundTint="@color/purple"
+            android:inputType="text"
+            android:text="@string/signup_finish"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/edt_signup_forte" />
 
 
+    </androidx.constraintlayout.widget.ConstraintLayout>
 
 
-
-</androidx.constraintlayout.widget.ConstraintLayout>
+</layout>
