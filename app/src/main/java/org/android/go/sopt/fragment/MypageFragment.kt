@@ -8,7 +8,6 @@ import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.Fragment
 import org.android.go.sopt.LoginActivity
-import org.android.go.sopt.MainActivity
 import org.android.go.sopt.databinding.FragmentMypageBinding
 
 class MypageFragment : Fragment() {
