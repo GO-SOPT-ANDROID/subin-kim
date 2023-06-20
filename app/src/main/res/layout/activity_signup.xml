@@ -118,7 +118,7 @@
                 android:id="@+id/edt_signup_name"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:hint="@string/pw_desc"
+                android:hint="@string/name_desc"
                 android:imeOptions="actionNext"
                 android:text="@={viewModel.name}"
                 android:textColor="@color/grey_800" />
@@ -150,7 +150,7 @@
                 android:id="@+id/edt_signup_forte"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:hint="@string/pw_desc"
+                android:hint="@string/forte_desc"
                 android:imeOptions="actionNext"
                 android:text="@={viewModel.forte}"
                 android:textColor="@color/grey_800" />

@@ -34,9 +34,6 @@ class LoginActivity : AppCompatActivity() {
 
             Toast.makeText(this@LoginActivity, "로그인에 성공했습니다.", Toast.LENGTH_SHORT).show()
             val intent = Intent(this@LoginActivity, MainActivity::class.java)
-            /*intent.putExtra("id", data?.id)
-            intent.putExtra("name", data?.name)
-            intent.putExtra("skill", data?.skill)*/
             startActivity(intent)
             finish()
         }
